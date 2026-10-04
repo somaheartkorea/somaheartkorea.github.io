@@ -5,6 +5,13 @@ wix-dropdown-menu { display: block; visibility: visible !important; }
 wow-image, wix-image { display:block; }
 [id="people"], [id="about"], [id="location"] { scroll-margin-top:24px; }
 a:focus-visible { outline:2px solid #3071a6; outline-offset:4px; }
+.replica-consultation-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:32px; padding:20px 20px 21px; }
+.replica-consultation-link { position:relative; display:flex; flex-direction:column; justify-content:space-between; box-sizing:border-box; min-height:255.375px; padding:30px; background:#1e1e1e; color:white; font-family:Arial,Helvetica,sans-serif; pointer-events:auto !important; cursor:pointer; text-decoration:none; }
+.replica-consultation-meta { display:flex; flex-direction:column; gap:6px; font-size:12px; line-height:1.4; }
+.replica-consultation-link h2 { color:white; font:bold 24px/1.4 Arial,Helvetica,sans-serif; margin:0; }
+.replica-consultation-link:hover { background:#292929; }
+.replica-consultation-link:focus-visible { outline-offset:-4px; }
+@media(max-width:600px) { .replica-consultation-list {grid-template-columns:1fr;gap:20px;} .replica-consultation-link {min-height:200px;padding:24px;} .replica-consultation-link h2 {font-size:20px;} }
 .replica-mobile-menu { display:none; }
 .replica-mobile-menu.open { display:flex; position:fixed; inset:0; z-index:100000; background:#fff; padding:75px 28px 30px; flex-direction:column; gap:20px; font:18px/1.5 serif; overflow:auto; }
 .replica-mobile-menu a { color:#414141; text-decoration:none; }

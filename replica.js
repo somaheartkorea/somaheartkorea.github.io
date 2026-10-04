@@ -10,6 +10,24 @@
     if(a.getAttribute('href').startsWith('http'))a.rel='noopener noreferrer';
   });
   if(location.hash){requestAnimationFrame(()=>document.getElementById(location.hash.slice(1))?.scrollIntoView());}
+  const blogWidget=document.getElementById('TPASection_lhnffprk');
+  if(blogWidget) {
+    const cards=[...blogWidget.querySelectorAll('[data-hook="post-list-item"]')].map(card=>{
+      const title=card.querySelector('a[href*="/post/"]');
+      return title?{href:title.href,title:title.textContent.trim(),author:card.querySelector('[data-hook="user-name"]')?.textContent||'somaheartkorea',date:card.querySelector('[data-hook="time-ago"]')?.textContent||''}:null;
+    }).filter(Boolean);
+    if(cards.length) {
+      const list=document.createElement('div');list.className='replica-consultation-list';
+      cards.forEach(card=>{
+        const link=document.createElement('a');link.href=card.href;link.className='replica-consultation-link';link.setAttribute('aria-label',card.title);
+        const meta=document.createElement('span');meta.className='replica-consultation-meta';
+        const author=document.createElement('span');author.textContent=card.author;
+        const date=document.createElement('span');date.textContent=card.date;meta.append(author,date);
+        const title=document.createElement('h2');title.textContent=card.title;link.append(meta,title);list.append(link);
+      });
+      blogWidget.replaceChildren(list);blogWidget.style.height='auto';blogWidget.style.minHeight='0';
+    }
+  }
   if(document.body.dataset.replicaMobile) {
     const links=[['Diverse Bodies','/m/'],['함께하는 사람들','/m/#people'],['상담 예약','/m/상담-예약/'],['교육','/m/교육/'],['SE 전문가','/m/blog/'],['워크샵','/m/워크샵/'],['활동 연혁','/m/활동-연혁/'],['도서','/m/저널/'],['오시는 길',location.pathname+'#location']];
     const menu=document.createElement('nav');menu.className='replica-mobile-menu';menu.setAttribute('aria-label','사이트 메뉴');
