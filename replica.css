@@ -1,0 +1,13 @@
+/* Keep the original desktop artwork, typography, spacing and generated layout. */
+html { scroll-behavior: smooth; }
+body { --scrollbar-width: 0px; }
+wix-dropdown-menu { display: block; visibility: visible !important; }
+wow-image, wix-image { display:block; }
+[id="people"], [id="about"], [id="location"] { scroll-margin-top:24px; }
+a:focus-visible { outline:2px solid #3071a6; outline-offset:4px; }
+.replica-mobile-menu { display:none; }
+.replica-mobile-menu.open { display:flex; position:fixed; inset:0; z-index:100000; background:#fff; padding:75px 28px 30px; flex-direction:column; gap:20px; font:18px/1.5 serif; overflow:auto; }
+.replica-mobile-menu a { color:#414141; text-decoration:none; }
+.replica-mobile-menu button { position:absolute; right:22px; top:22px; background:none; border:0; font:30px serif; cursor:pointer; }
+.replica-map { width:100%; height:100%; border:0; }
+@media (prefers-reduced-motion:reduce) { html {scroll-behavior:auto;} }
