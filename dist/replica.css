@@ -20,6 +20,10 @@ html { scroll-behavior: smooth; }
 }
 body { --scrollbar-width: 0px; }
 wix-dropdown-menu { display: block; visibility: visible !important; }
+wix-dropdown-menu a[aria-current], wix-dropdown-menu a[aria-current] *,
+.replica-mobile-menu a[aria-current],
+wix-dropdown-menu a:focus-visible, wix-dropdown-menu a:focus-visible *,
+.replica-mobile-menu a:focus-visible { font-weight:700 !important; }
 wow-image, wix-image { display:block; }
 [id="people"], [id="about"], [id="location"] { scroll-margin-top:24px; }
 a:focus-visible { outline:2px solid #3071a6; outline-offset:4px; }

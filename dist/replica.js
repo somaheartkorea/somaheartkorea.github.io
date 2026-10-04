@@ -55,4 +55,27 @@
     const trigger=document.querySelector('[data-testid="tinymenu-menubutton"]')||document.querySelector('[data-testid="hamburger-menu"]')||document.querySelector('[aria-label*="Open navigation"]')||document.querySelector('.wixui-menu-toggle');
     if(trigger){trigger.setAttribute('role','button');trigger.setAttribute('aria-label','메뉴 열기');trigger.tabIndex=0;const open=()=>{menu.classList.add('open');document.body.style.overflow='hidden';menu.querySelector('button').focus();};trigger.onclick=open;trigger.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open();}};}
   }
+  const menuLinks=[...document.querySelectorAll('wix-dropdown-menu nav a[href], .replica-mobile-menu a[href]')];
+  const normalizePath=pathname=>decodeURIComponent(pathname).replace(/^\/m(?=\/|$)/,'').replace(/\/+$/,'')||'/';
+  function updateSelectedMenu() {
+    const currentPath=normalizePath(location.pathname);
+    const selectedPath=currentPath.startsWith('/post/')?'/blog':currentPath;
+    const hashLink=menuLinks.find(link=>{
+      const url=new URL(link.href);
+      return location.hash && url.hash===location.hash && normalizePath(url.pathname)===currentPath;
+    });
+    for(const link of menuLinks) {
+      const url=new URL(link.href);
+      const selected=hashLink?link===hashLink:!url.hash&&normalizePath(url.pathname)===selectedPath;
+      if(selected)link.setAttribute('aria-current',url.hash?'location':'page');
+      else link.removeAttribute('aria-current');
+    }
+  }
+  menuLinks.forEach(link=>link.addEventListener('click',()=>{
+    menuLinks.forEach(item=>item.removeAttribute('aria-current'));
+    link.setAttribute('aria-current',new URL(link.href).hash?'location':'page');
+  }));
+  window.addEventListener('hashchange',updateSelectedMenu);
+  window.addEventListener('pageshow',updateSelectedMenu);
+  updateSelectedMenu();
 })();
