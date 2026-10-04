@@ -10,6 +10,22 @@
     if(a.getAttribute('href').startsWith('http'))a.rel='noopener noreferrer';
   });
   if(location.hash){requestAnimationFrame(()=>document.getElementById(location.hash.slice(1))?.scrollIntoView());}
+  const postWidget=document.getElementById('TPAMultiSection_lhnffpt8');
+  const postBody=postWidget?.querySelector('[data-hook="post-description"]');
+  if(postBody) {
+    const titleText=postWidget.querySelector('h1[data-hook="post-title"]')?.textContent.trim()||document.title;
+    const content=postBody.cloneNode(true);
+    content.querySelectorAll('script,style,button').forEach(el=>el.remove());
+    [content,...content.querySelectorAll('*')].forEach(el=>{
+      [...el.attributes].forEach(attr=>{if(!['href','src','alt','target','rel','width','height'].includes(attr.name))el.removeAttribute(attr.name);});
+    });
+    content.className='replica-post-content';
+    const article=document.createElement('article');article.className='replica-post';
+    const back=document.createElement('a');back.href=document.body.dataset.replicaMobile?'/m/blog/':'/blog/';back.className='replica-post-back';back.textContent='← SE 전문가 목록';
+    const title=document.createElement('h1');title.textContent=titleText;
+    const meta=document.createElement('p');meta.className='replica-post-meta';meta.textContent=['somaheartkorea',postWidget.querySelector('[data-hook="time-ago"]')?.textContent].filter(Boolean).join(' · ');
+    article.append(back,title,meta,content);postWidget.replaceChildren(article);postWidget.style.height='auto';postWidget.style.minHeight='0';
+  }
   const blogWidget=document.getElementById('TPASection_lhnffprk');
   if(blogWidget) {
     const cards=[...blogWidget.querySelectorAll('[data-hook="post-list-item"]')].map(card=>{

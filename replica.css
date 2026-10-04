@@ -8,6 +8,15 @@ wix-dropdown-menu { display: block; visibility: visible !important; }
 wow-image, wix-image { display:block; }
 [id="people"], [id="about"], [id="location"] { scroll-margin-top:24px; }
 a:focus-visible { outline:2px solid #3071a6; outline-offset:4px; }
+.replica-post { box-sizing:border-box; width:100%; padding:40px 60px 60px; background:white; color:#414141; }
+.replica-post-back { color:#3071a6; font-size:14px; }
+.replica-post h1 { font-size:30px; font-weight:600; line-height:1.5; margin:24px 0 12px; }
+.replica-post-meta { color:#777; font-size:13px; margin:0 0 32px; }
+.replica-post-content { font-size:16px; line-height:1.9; overflow-wrap:anywhere; }
+.replica-post-content p { margin:0 0 16px; }
+.replica-post-content a { color:#3071a6; text-decoration:underline; }
+.replica-post-content img { max-width:100%; height:auto; }
+@media(max-width:600px) { .replica-post {padding:24px 20px 40px;} .replica-post h1 {font-size:23px;} .replica-post-content {font-size:15px;} }
 .replica-consultation-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:32px; padding:20px 20px 21px; }
 .replica-consultation-link { position:relative; display:flex; flex-direction:column; justify-content:space-between; box-sizing:border-box; min-height:255.375px; padding:30px; background:#1e1e1e; color:white; font-family:Arial,Helvetica,sans-serif; pointer-events:auto !important; cursor:pointer; text-decoration:none; }
 .replica-consultation-meta { display:flex; flex-direction:column; gap:6px; font-size:12px; line-height:1.4; }
