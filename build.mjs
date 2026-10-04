@@ -5,6 +5,7 @@ const root=import.meta.dirname;
 const out=path.join(root,'dist');
 await fs.mkdir(path.join(out,'assets'),{recursive:true});
 await fs.copyFile(path.join(root,'assets/best-self-35-cover.jpg'),path.join(out,'assets/best-self-35-cover.jpg'));
+await fs.copyFile(path.join(root,'assets/hero-relief.png'),path.join(out,'assets/hero-relief.png'));
 const pages={index:'',counseling:'상담-예약',education:'교육',professionals:'blog',workshops:'워크샵',history:'활동-연혁',books:'저널','post-1':'post/se-중급레벨-그룹테이스-컨설테이션','post-2':'post/se-초급레벨-그룹케이스-컨설테이션'};
 const assetMap=new Map();
 const texts=[];
@@ -21,6 +22,10 @@ for(const {name,route,mobile} of inputs) {
   html=html.replace(/hidden-during-prewarmup/g,'');
   html=html.replace(/<footer\b[^>]*id="SITE_FOOTER"[^>]*>[\s\S]*?<\/footer>/,directions);
   html=html.replace(/\s+srcset="[^"]*"/g,'');
+  if(name==='index') {
+    html=html.replace(/<img\b[^>]*alt="Decalcomanie_Life_rgb\.jpg"[^>]*>/g,
+      tag=>tag.replace(/\bsrc="[^"]*"/,'src="/assets/hero-relief.png"'));
+  }
   if(name==='books') {
     html=html.replace(/<img\b[^>]*id="img_comp-kcy7smp7"[^>]*>/g,tag=>tag
       .replace(/\bsrc="[^"]*"/,'src="/assets/best-self-35-cover.jpg"')
