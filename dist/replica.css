@@ -3,6 +3,21 @@ html body, html body * { font-family:"Noto Sans KR",sans-serif !important; }
 body:not([data-replica-mobile]) #comp-j6m5uq7n h3,
 body:not([data-replica-mobile]) #comp-j6m5uq7n h3 span { font-size:34px !important; }
 html { scroll-behavior: smooth; }
+/* Let the two captions over the homepage artwork gently fade in and out. */
+#comp-j6m77flz, #comp-j6m5uq7n {
+  animation: hero-caption-fade 10s ease-in-out infinite;
+}
+@keyframes hero-caption-fade {
+  0%, 30%, 100% { opacity: 1; }
+  55%, 75% { opacity: 0; }
+}
+#comp-j6m77flz:focus-within, #comp-j6m5uq7n:focus-within {
+  animation: none;
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  #comp-j6m77flz, #comp-j6m5uq7n { animation: none; opacity: 1; }
+}
 body { --scrollbar-width: 0px; }
 wix-dropdown-menu { display: block; visibility: visible !important; }
 wow-image, wix-image { display:block; }
