@@ -86,4 +86,9 @@ for(let {route,html} of texts){
 }
 for(const name of ['replica.css','replica.js'])await fs.copyFile(path.join(root,name),path.join(out,name));
 await fs.writeFile(path.join(out,'robots.txt'),'User-agent: *\nDisallow: /\n');
+// GitHub Pages publishes main's root; keep its pages and assets in sync.
+for(const entry of await fs.readdir(out)) {
+  await fs.cp(path.join(out,entry),path.join(root,entry),{recursive:true});
+}
+await fs.writeFile(path.join(root,'.nojekyll'),'');
 console.log(`Built ${texts.length} pages with ${assetMap.size} local assets`);
