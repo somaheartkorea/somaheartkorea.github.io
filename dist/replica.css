@@ -1,4 +1,7 @@
-/* Keep the original desktop artwork, typography, spacing and generated layout. */
+/* Preserve the original layout and use Noto Sans KR throughout the site. */
+html body, html body * { font-family:"Noto Sans KR",sans-serif !important; }
+body:not([data-replica-mobile]) #comp-j6m5uq7n h3,
+body:not([data-replica-mobile]) #comp-j6m5uq7n h3 span { font-size:34px !important; }
 html { scroll-behavior: smooth; }
 body { --scrollbar-width: 0px; }
 wix-dropdown-menu { display: block; visibility: visible !important; }

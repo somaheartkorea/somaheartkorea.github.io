@@ -58,7 +58,7 @@ for(const {name,route,mobile} of inputs) {
     }
   }
   html=html.replace('<head>',`<head><script>if((matchMedia('(max-width: 600px)').matches||screen.width<=600)!==${mobile})location.replace((${mobile}?location.pathname.replace(/^\\/m\\//,'/'):'/m'+location.pathname)+location.search+location.hash);</script>`);
-  html=html.replace('</head>','<link rel="stylesheet" href="/replica.css">\n</head>');
+  html=html.replace('</head>','<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&amp;display=swap">\n<link rel="stylesheet" href="/replica.css">\n</head>');
   if(mobile)html=html.replace('<body','<body data-replica-mobile="true"');
   html=html.replace('</body>','<script src="/replica.js" defer></script>\n</body>');
   texts.push({route,html});
