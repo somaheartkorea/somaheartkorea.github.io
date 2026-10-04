@@ -8,6 +8,7 @@ await fs.copyFile(path.join(root,'assets/best-self-35-cover.jpg'),path.join(out,
 const pages={index:'',counseling:'상담-예약',education:'교육',professionals:'blog',workshops:'워크샵',history:'활동-연혁',books:'저널','post-1':'post/se-중급레벨-그룹테이스-컨설테이션','post-2':'post/se-초급레벨-그룹케이스-컨설테이션'};
 const assetMap=new Map();
 const texts=[];
+const directions=await fs.readFile(path.join(root,'directions.html'),'utf8');
 const inputs=Object.entries(pages).map(([name,route])=>({name,route,mobile:false}));
 for(const [name,route] of Object.entries(pages)) {
   try {await fs.access(path.join(root,'source/mobile',name+'.html'));inputs.push({name,route:'m/'+route,mobile:true});}catch{}
@@ -18,6 +19,7 @@ for(const {name,route,mobile} of inputs) {
   html=html.replace(/<link\b[^>]*(?:rel=["'](?:preload|prefetch|preconnect|dns-prefetch|canonical)["'])[^>]*>/gi,'');
   html=html.replace(/<meta\b[^>]*(?:name=["']generator|property=["']og:url)[^>]*>/gi,'');
   html=html.replace(/hidden-during-prewarmup/g,'');
+  html=html.replace(/<footer\b[^>]*id="SITE_FOOTER"[^>]*>[\s\S]*?<\/footer>/,directions);
   html=html.replace(/\s+srcset="[^"]*"/g,'');
   if(name==='books') {
     html=html.replace(/<img\b[^>]*id="img_comp-kcy7smp7"[^>]*>/g,tag=>tag

@@ -4,7 +4,7 @@
   const people=document.querySelector('[aria-label="함께하는 사람들"][role="region"]')||rich.find(el=>el.textContent.replace(/[\u200B-\u200D\uFEFF]/g,'').trim()==='함께하는 사람들');
   const address=rich.find(el=>el.textContent.includes('서울특별시 마포구 백범로')&&el.textContent.includes('주차'));
   for(const [name,element] of Object.entries({about,people,location:address}))if(element&&!document.getElementById(name)){const anchor=document.createElement('span');anchor.id=name;anchor.style.cssText='display:block;position:absolute;top:0';element.prepend(anchor);}
-  if(!address){const footer=document.getElementById('SITE_FOOTER');if(footer){const anchor=document.createElement('span');anchor.id='location';footer.prepend(anchor);}}
+  if(!address&&!document.getElementById('location')){const footer=document.getElementById('SITE_FOOTER');if(footer){const anchor=document.createElement('span');anchor.id='location';footer.prepend(anchor);}}
   document.querySelectorAll('a[href]').forEach(a=>{
     if(a.getAttribute('href').endsWith('&nbsp;'))a.href=a.getAttribute('href').replace(/&nbsp;$/,'');
     if(a.getAttribute('href').startsWith('http'))a.rel='noopener noreferrer';

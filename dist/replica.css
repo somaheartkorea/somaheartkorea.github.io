@@ -29,4 +29,24 @@ a:focus-visible { outline:2px solid #3071a6; outline-offset:4px; }
 .replica-mobile-menu a { color:#414141; text-decoration:none; }
 .replica-mobile-menu button { position:absolute; right:22px; top:22px; background:none; border:0; font:30px serif; cursor:pointer; }
 .replica-map { width:100%; height:100%; border:0; }
+.replica-footer { background:#fafafa; color:#414141; }
+.replica-directions { box-sizing:border-box; max-width:980px; margin:auto; padding:56px 40px 40px; }
+.replica-directions#location { scroll-margin-top:260px; }
+.replica-directions h2 { font-size:26px; font-weight:500; margin:0 0 32px; }
+.replica-directions-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.25fr); gap:40px; }
+.replica-directions h3 { font-size:17px; font-weight:600; margin:24px 0 12px; }
+.replica-directions h3:first-child { margin-top:0; }
+.replica-directions p { font-size:14px; line-height:1.9; margin:0 0 12px; }
+.replica-directions-lines { color:#6b7280; }
+.replica-hours { font-size:14px; margin:0; }
+.replica-hours div { display:flex; gap:24px; padding:5px 0; }
+.replica-hours dt { width:52px; }
+.replica-hours dd { margin:0; }
+.replica-walking-map { display:block; width:100%; height:auto; margin-bottom:20px; }
+.replica-location-map { display:block; width:100%; height:320px; border:1px solid #dde3ea; border-radius:12px; box-sizing:border-box; }
+.replica-map-links { display:flex; flex-wrap:wrap; gap:12px; margin-top:16px; }
+.replica-map-links a { color:#3071a6; text-decoration:underline; font-size:13px; line-height:1.8; }
+.replica-business { box-sizing:border-box; max-width:980px; margin:auto; padding:24px 40px 32px; border-top:1px solid #e5e7eb; font-size:12px; line-height:1.9; }
+.replica-business a { color:inherit; }
+@media(max-width:600px) { .replica-directions {padding:32px 20px;} .replica-directions#location {scroll-margin-top:100px;} .replica-directions-grid {grid-template-columns:1fr;gap:28px;} .replica-location-map {height:280px;} .replica-business {padding:20px;} }
 @media (prefers-reduced-motion:reduce) { html {scroll-behavior:auto;} }
