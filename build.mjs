@@ -4,6 +4,7 @@ import crypto from 'node:crypto';
 const root=import.meta.dirname;
 const out=path.join(root,'dist');
 await fs.mkdir(path.join(out,'assets'),{recursive:true});
+await fs.copyFile(path.join(root,'assets/best-self-35-cover.jpg'),path.join(out,'assets/best-self-35-cover.jpg'));
 const pages={index:'',counseling:'상담-예약',education:'교육',professionals:'blog',workshops:'워크샵',history:'활동-연혁',books:'저널','post-1':'post/se-중급레벨-그룹테이스-컨설테이션','post-2':'post/se-초급레벨-그룹케이스-컨설테이션'};
 const assetMap=new Map();
 const texts=[];
@@ -18,6 +19,12 @@ for(const {name,route,mobile} of inputs) {
   html=html.replace(/<meta\b[^>]*(?:name=["']generator|property=["']og:url)[^>]*>/gi,'');
   html=html.replace(/hidden-during-prewarmup/g,'');
   html=html.replace(/\s+srcset="[^"]*"/g,'');
+  if(name==='books') {
+    html=html.replace(/<img\b[^>]*id="img_comp-kcy7smp7"[^>]*>/g,tag=>tag
+      .replace(/\bsrc="[^"]*"/,'src="/assets/best-self-35-cover.jpg"')
+      .replace(/\balt="[^"]*"/,'alt="최고의 나를 찾는 심리전략 35 컬러 책 표지"')
+      .replace(/object-fit:\s*cover/g,'object-fit:contain'));
+  }
   html=html.replace(/(?:https?:)?\/\/www\.somaheart\.org\/?/g,mobile?'/m/':'/');
   html=html.replace(/<a\b[^>]*>/gi,tag=>{
     const anchor=tag.match(/data-anchor="([^"]+)"/);
